@@ -1,7 +1,7 @@
 /*
  *  Descricao	: Programa de um contolador do oscilador de Van der Pol com zona morta e controlador Fuzzy
  *  Arquivo	: VdP_zn_fuzzy.cpp
- *  Autores	: Marcelo Costa Tanaka e Josiane Maria de Macedo Fernandes
+ *  Autores	: Maurício Gandarela
  *  Atualizacao	: 2011-07-03
  */
 
@@ -33,11 +33,11 @@ main()
     if ((out57 = fopen("out57.dat", "w")) == NULL)
 		printf("Nao foi possivel abrir o arquivo out57.dat!\n");       	
 		
-	x = 5;		/* Condicao inicial (posi��o inicial) */
+	x = 5;		/* Condicao inicial (posiï¿½ï¿½o inicial) */
 	v = 0.2;        /* Condicao inicial (velocidade inicial) */
 	t = 0.0;		/* Instante inicial */
 	tf = 60.0;		/* Instante final */
-	mi = 1.5;       /* Coeficiente n�o linear da for�a de amortecimento*/
+	mi = 1.5;       /* Coeficiente nï¿½o linear da forï¿½a de amortecimento*/
     b = 2.0;        /* Ganho do controlador*/
     lam = 10;      /* constante estritamente positiva*/
     csr = 500.0;	/* Taxa de amostragem do controlador */
@@ -46,9 +46,9 @@ main()
 	sst = 1.0/ssr;	/* Periodo de amostragem do simulador */
       
 	while (t < tf) {
-        xd = (t<=15)?t:(t>15&&t<30)?-t+30:(t>=30&&t<=45)?t-30:-t+60;        /* Trajet�ria desejada(m)*/
+        xd = (t<=15)?t:(t>15&&t<30)?-t+30:(t>=30&&t<=45)?t-30:-t+60;        /* Trajetï¿½ria desejada(m)*/
         vd =(t<=15)?1:(t>15&&t<30)?-1:(t>=30&&t<=45)?1:-1;        /* Velocidade desejada(m/s)*/
-        ad = 0;       /* Acelera��o desejada(m/s�)*/
+        ad = 0;       /* Aceleraï¿½ï¿½o desejada(m/sï¿½)*/
         e = x - xd;         /* Erro*/
   	    de = v - vd;        /* Derivada do erro*/
   	    u = (-(mi*(1.0 - (x*x))*v) + x + (ad - 2.0*lam*de - ((lam*lam)*e))) * (1.0 / b); /* Lei de controle para o OscVDP*/
@@ -111,8 +111,8 @@ void rk4_1(double t, double tf, double u, double *ptx, double *ptv, double (*fun
 double func(double t, double x, double v, double u)
 {
 		double f, mi, b, dl, dr, ni, E;
-	E = 1.0 + 0.2*(sin(3*t*fabs(x)));  /* Incerteza com varia��o de 20%*/
-    mi = 1.5*E;       /* Coeficiente n�o linear da for�a de amortecimento*/
+	E = 1.0 + 0.2*(sin(3*t*fabs(x)));  /* Incerteza com variaï¿½ï¿½o de 20%*/
+    mi = 1.5*E;       /* Coeficiente nï¿½o linear da forï¿½a de amortecimento*/
     b = 2.0;        /* Ganho do controlador*/
     dl = -0.25;      /* Limite inferior da zona morta*/
     dr = 0.25;       /* Limite superior da zn*/
@@ -156,10 +156,10 @@ double fuzzy(double e, double de)
                                          -0.025,     0.0,      0.025,      0.005,     0.005,     0.20,    0.20,
                                           0.0,     0.025,      0.005,      0.005,     0.20,    0.20,    0.20};
       
-      emin = -0.001;             /* Erro m�nimo*/
-      emax = 0.001;              /* Erro m�ximo*/
-      demin = -0.01;              /* Derivada do erro m�nimo*/
-      demax = 0.01;               /* Derivada do erro m�ximo*/     
+      emin = -0.001;             /* Erro mínimo*/
+      emax = 0.001;              /* Erro máximo*/
+      demin = -0.01;              /* Derivada do erro mínimo*/
+      demax = 0.01;               /* Derivada do erro máximo*/     
 
     double  ER[7] = {-0.1, -0.01, -0.001, 0.0, 0.001, 0.01, 0.1};          /* Vetor erro com n componentes*/
     double  DR[7] = {-0.1, -0.01, -0.001, 0.0, 0.001, 0.01, 0.1};          /* Vetor derivada do erro com n componentes*/
@@ -238,7 +238,7 @@ double fuzzy(double e, double de)
                pmax7=(pmin7>0?pmin7:0);
                   GPP[6]=pmax7;      
                   
-      //defuzzifica�ao
+      //defuzzificaçao
       k=0;
           for (i = 0; i <= (m-1); i++){          
             for (j=0;j<=(n-1);j++){
