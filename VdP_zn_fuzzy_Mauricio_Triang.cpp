@@ -2,7 +2,7 @@
  *  Descricao	: Programa de um contolador do oscilador de Van der Pol com zona morta e controlador Fuzzy
  *  Arquivo	: VdP_zn_fuzzy.cpp
  *  Autores	: Maurício Gandarela
- *  Atualizacao	: 2011-07-03
+ *  Atualizacao	: 13-07-2020
  */
 
 #include <stdio.h>
